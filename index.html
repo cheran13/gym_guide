@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PulseFit AI — Adaptive Strength & Nutrition Intelligence OS</title>
+  <meta name="description" content="AI-powered hyper-personalized workout generator, progressive overload engine, workout logger with PR tracking, Indian/global nutrition planner, and biomechanics AI coach.">
+
+  <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Top Application Header -->
+  <header class="app-header">
+    <div class="brand-container">
+      <div class="brand-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M6 5v14M18 5v14M2 9v6M22 9v6M6 12h12"/>
+        </svg>
+      </div>
+      <div>
+        <div class="brand-title">PULSEFIT <span class="glow">AI</span></div>
+      </div>
+      <span class="brand-badge">ADAPTIVE OS</span>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs" aria-label="Main Navigation">
+      <button class="nav-tab-btn active" data-tab="dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Dashboard & Overload
+      </button>
+      <button class="nav-tab-btn" data-tab="generator">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Workout Generator
+      </button>
+      <button class="nav-tab-btn" data-tab="logger">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Active Logger & PRs
+      </button>
+      <button class="nav-tab-btn" data-tab="nutrition">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        Nutrition & Indian Meals
+      </button>
+      <button class="nav-tab-btn" data-tab="coach">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        AI Biomechanics Coach
+      </button>
+    </nav>
+
+    <!-- Header Status Indicator -->
+    <div class="header-actions">
+      <div class="status-pill">
+        <div class="pulse-dot"></div>
+        <span>Overload Engine Active</span>
+      </div>
+      <button class="icon-btn" onclick="workoutLogger.playAudioChime('beep')" title="Sound Check">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- App Main Content Area -->
+  <main class="app-container">
+
+    <!-- ============================================== -->
+    <!-- 1. DASHBOARD & OVERLOAD HUB VIEW               -->
+    <!-- ============================================== -->
+    <section id="view-dashboard" class="view-section active">
+      
+      <!-- Standout Feature Hero Card -->
+      <div class="overload-hero-card">
+        <div>
+          <div class="overload-tag">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            Standout Feature: Adaptive Overload Engine (APOE)
+          </div>
+          <h1 class="overload-hero-title">
+            Your workouts <span>get slightly harder each week</span>, calibrated strictly by your logs.
+          </h1>
+          <p class="overload-hero-desc">
+            No more static cookie-cutter plans. When you achieve your target reps with an RPE &le; 8, PulseFit automatically calculates your next +2.5kg micro-plate jump or rep progression. If you encounter joint fatigue, the engine consolidates load and triggers eccentric tempo cues.
+          </p>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <button class="btn btn-primary" onclick="app.applyProgressiveOverload()">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              Apply Adaptive Overload to Next Week
+            </button>
+            <button class="btn btn-secondary" onclick="app.switchTab('logger')">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Start Today's Workout
+            </button>
+          </div>
+        </div>
+
+        <!-- Overload Metrics Summary -->
+        <div class="overload-metrics-grid" id="dashboard-metrics-summary">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- 4-Week Progressive Overload Forecast Matrix -->
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--accent-volt)" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            4-Week Adaptive Periodization Forecast
+          </h2>
+          <p class="section-subtitle">Real-time volume scaling and intensity wave modeling</p>
+        </div>
+      </div>
+
+      <div class="grid-4" id="overload-forecast-grid" style="margin-bottom: 2rem;">
+        <!-- Populated via app.js -->
+      </div>
+
+      <!-- Dual Analytics Grid -->
+      <div class="grid-2">
+        <!-- Canvas Volume Progression Chart -->
+        <div class="glass-card">
+          <div class="section-header" style="margin-bottom: 1rem;">
+            <div>
+              <h3 style="font-size: 1.15rem; font-weight: 700; color: #fff;">Volume Load Progression (kg)</h3>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">Total weekly tonnage lifted with +8.4% overload curve</p>
+            </div>
+            <span class="badge badge-overload">+12% Monthly</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="volume-chart-canvas"></canvas>
+          </div>
+        </div>
+
+        <!-- Verified Personal Records (PR) Board -->
+        <div class="glass-card">
+          <div class="section-header" style="margin-bottom: 1rem;">
+            <div>
+              <h3 style="font-size: 1.15rem; font-weight: 700; color: #fff;">Personal Records Hall of Fame</h3>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">Verified best sets & calculated 1RM peaks</p>
+            </div>
+            <span class="badge" style="background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3);">Verified PRs</span>
+          </div>
+          <div id="dashboard-pr-list" style="display: flex; flex-direction: column;">
+            <!-- Populated via app.js -->
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ============================================== -->
+    <!-- 2. WORKOUT PLAN GENERATOR VIEW                -->
+    <!-- ============================================== -->
+    <section id="view-generator" class="view-section">
+      <div class="section-header">
+        <div>
+          <h1 class="section-title">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="var(--accent-volt)" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            Hyper-Personalized Workout Plan Generator
+          </h1>
+          <p class="section-subtitle">Builds an adaptive periodized weekly plan tailored to your goal, level, equipment, and schedule.</p>
+        </div>
+      </div>
+
+      <!-- Generator Wizard Card -->
+      <div class="wizard-card" style="margin-bottom: 2rem;">
+        
+        <!-- 1. Goal Selector -->
+        <div class="form-group">
+          <label class="form-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            Primary Fitness Goal
+          </label>
+          <div class="pill-grid">
+            <label class="pill-option">
+              <input type="radio" name="wizard-goal" value="hypertrophy" checked>
+              <div class="pill-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 5v14M18 5v14M2 9v6M22 9v6M6 12h12"/></svg>
+                <div class="pill-title">Hypertrophy</div>
+                <div class="pill-desc">Muscle volume & aesthetics (8-12 reps)</div>
+              </div>
+            </label>
+            <label class="pill-option">
+              <input type="radio" name="wizard-goal" value="strength">
+              <div class="pill-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <div class="pill-title">Pure Strength</div>
+                <div class="pill-desc">Heavy compound loading (4-6 reps)</div>
+              </div>
+            </label>
+            <label class="pill-option">
+              <input type="radio" name="wizard-goal" value="fatloss">
+              <div class="pill-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 4a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg>
+                <div class="pill-title">Fat Loss & Density</div>
+                <div class="pill-desc">High metabolic density (short rest)</div>
+              </div>
+            </label>
+            <label class="pill-option">
+              <input type="radio" name="wizard-goal" value="functional">
+              <div class="pill-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                <div class="pill-title">Mobility & Longevity</div>
+                <div class="pill-desc">Joint stability & athletic movement</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- 2. Experience Level & Equipment -->
+        <div class="grid-2">
+          <div class="form-group">
+            <label class="form-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              Experience Level
+            </label>
+            <div class="pill-grid">
+              <label class="pill-option">
+                <input type="radio" name="wizard-level" value="beginner">
+                <div class="pill-box">
+                  <div class="pill-title">Beginner</div>
+                  <div class="pill-desc">Linear progression</div>
+                </div>
+              </label>
+              <label class="pill-option">
+                <input type="radio" name="wizard-level" value="intermediate" checked>
+                <div class="pill-box">
+                  <div class="pill-title">Intermediate</div>
+                  <div class="pill-desc">Double progression</div>
+                </div>
+              </label>
+              <label class="pill-option">
+                <input type="radio" name="wizard-level" value="advanced">
+                <div class="pill-box">
+                  <div class="pill-title">Advanced</div>
+                  <div class="pill-desc">Wave periodization</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              Available Equipment
+            </label>
+            <div class="pill-grid">
+              <label class="pill-option">
+                <input type="radio" name="wizard-equipment" value="gym" checked>
+                <div class="pill-box">
+                  <div class="pill-title">Full Gym</div>
+                  <div class="pill-desc">Barbells & cables</div>
+                </div>
+              </label>
+              <label class="pill-option">
+                <input type="radio" name="wizard-equipment" value="dumbbells">
+                <div class="pill-box">
+                  <div class="pill-title">Dumbbells & Bench</div>
+                  <div class="pill-desc">Home gym setup</div>
+                </div>
+              </label>
+              <label class="pill-option">
+                <input type="radio" name="wizard-equipment" value="bodyweight">
+                <div class="pill-box">
+                  <div class="pill-title">Calisthenics</div>
+                  <div class="pill-desc">Bodyweight only</div>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Schedule & Time Per Day -->
+        <div class="grid-2">
+          <div class="form-group">
+            <label class="form-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Days Per Week Split
+            </label>
+            <div class="pill-grid">
+              <label class="pill-option">
+                <input type="radio" name="wizard-days" value="3">
+                <div class="pill-box">
+                  <div class="pill-title">3 Days</div>
+                  <div class="pill-desc">Full Body Split</div>
+                </div>
+              </label>
+              <label class="pill-option">
+                <input type="radio" name="wizard-days" value="4" checked>
+                <div class="pill-box">
+                  <div class="pill-title">4 Days</div>
+                  <div class="pill-desc">Upper / Lower</div>
+                </div>
+              </label>
+              <label class="pill-option">
+                <input type="radio" name="wizard-days" value="5">
+                <div class="pill-box">
+                  <div class="pill-title">5 Days</div>
+                  <div class="pill-desc">PPL + Upper/Lower</div>
+                </div>
+              </label>
+              <label class="pill-option">
+                <input type="radio" name="wizard-days" value="6">
+                <div class="pill-box">
+                  <div class="pill-title">6 Days</div>
+                  <div class="pill-desc">PPL x 2 High Vol</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Time Available Per Session
+            </label>
+            <div class="pill-grid">
+              <label class="pill-option">
+                <input type="radio" name="wizard-time" value="20">
+                <div class="pill-box">
+                  <div class="pill-title">20 Mins</div>
+                  <div class="pill-desc">Express supersets</div>
+                </div>
+              </label>
+              <label class="pill-option">
+                <input type="radio" name="wizard-time" value="30">
+                <div class="pill-box">
+                  <div class="pill-title">30 Mins</div>
+                  <div class="pill-desc">Dense clusters</div>
+                </div>
+              </label>
+              <label class="pill-option">
+                <input type="radio" name="wizard-time" value="45" checked>
+                <div class="pill-box">
+                  <div class="pill-title">45 Mins</div>
+                  <div class="pill-desc">Optimal hypertrophy</div>
+                </div>
+              </label>
+              <label class="pill-option">
+                <input type="radio" name="wizard-time" value="60">
+                <div class="pill-box">
+                  <div class="pill-title">60 Mins</div>
+                  <div class="pill-desc">Full strength & accessories</div>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Joint & Physical Considerations -->
+        <div class="form-group" style="margin-bottom: 2rem;">
+          <label class="form-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Joint Protection & Pain Filters (Safe Alternatives Auto-Mapped)
+          </label>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <label class="pill-option" style="flex: 1; min-width: 180px;">
+              <input type="checkbox" name="wizard-joints" value="knee_pain">
+              <div class="pill-box">
+                <div class="pill-title">&#129657; Knee-Friendly Mode</div>
+                <div class="pill-desc">Swaps deep squats for box & Spanish squats</div>
+              </div>
+            </label>
+            <label class="pill-option" style="flex: 1; min-width: 180px;">
+              <input type="checkbox" name="wizard-joints" value="lower_back_pain">
+              <div class="pill-box">
+                <div class="pill-title">&#128737; Lower Back Safe</div>
+                <div class="pill-desc">Removes spinal axial loading (chest-supported)</div>
+              </div>
+            </label>
+            <label class="pill-option" style="flex: 1; min-width: 180px;">
+              <input type="checkbox" name="wizard-joints" value="shoulder_pain">
+              <div class="pill-box">
+                <div class="pill-title">&#128170; Shoulder Safe</div>
+                <div class="pill-desc">Neutral-grip & landmine angles only</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <button id="btn-generate-plan" class="btn btn-primary btn-lg" style="width: 100%;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          Generate Custom Adaptive Routine
+        </button>
+      </div>
+
+      <!-- Generated Routine Output Container -->
+      <div id="routine-output-container">
+        <div class="section-header">
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <h2 id="active-routine-title" class="section-title">Upper / Lower Hypertrophy Split</h2>
+              <span id="active-routine-week-badge" class="badge badge-overload">Week 1 Microcycle</span>
+            </div>
+            <p class="section-subtitle">Click any day to inspect prescribed exercises, warmup activation, and progressive overload targets.</p>
+          </div>
+        </div>
+
+        <!-- Days Navigation Tab Bar -->
+        <div class="workout-days-nav" id="routine-days-nav">
+          <!-- Populated via app.js -->
+        </div>
+
+        <!-- Exercise Routine List -->
+        <div id="active-day-exercises">
+          <!-- Populated via app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- 3. ACTIVE WORKOUT LOGGER & PRs VIEW            -->
+    <!-- ============================================== -->
+    <section id="view-logger" class="view-section">
+      <div id="logger-active-container">
+        <!-- Populated via app.js -->
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- 4. NUTRITION PLANNER VIEW                      -->
+    <!-- ============================================== -->
+    <section id="view-nutrition" class="view-section">
+      <div class="section-header">
+        <div>
+          <h1 class="section-title">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="var(--accent-volt)" stroke-width="2.5"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+            Nutrition Planner & Indian Cuisine Engine
+          </h1>
+          <p class="section-subtitle">Calorie & macro targets, Indian vegetarian/non-veg meal blueprints, and interactive daily food log.</p>
+        </div>
+        <div style="display: flex; gap: 0.75rem;">
+          <button class="btn btn-secondary btn-sm" id="btn-reset-nutrition-log">Reset Daily Log</button>
+          <button class="btn btn-primary btn-sm" id="btn-open-food-modal">+ Quick Add Food</button>
+        </div>
+      </div>
+
+      <!-- Macro Progress Rings Bar -->
+      <div class="glass-card" style="margin-bottom: 2rem;">
+        <div class="macro-rings-wrapper" id="macro-rings-container">
+          <!-- Populated via app.js -->
+        </div>
+
+        <!-- Water Tracker Bar -->
+        <div style="padding: 1rem 1.5rem; background: rgba(0,0,0,0.25); border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; border-radius: 0 0 var(--radius-lg) var(--radius-lg); flex-wrap: wrap; gap: 0.75rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <div style="width: 34px; height: 34px; border-radius: var(--radius-sm); background: rgba(6, 182, 212, 0.15); display: flex; align-items: center; justify-content: center; color: #06b6d4;">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+            </div>
+            <div>
+              <div style="font-weight: 700; font-size: 0.9rem; color: #fff;">Hydration Target</div>
+              <div id="water-glass-count" style="font-size: 0.8rem; color: var(--text-muted);">6 / 12 Glasses (1.5L)</div>
+            </div>
+          </div>
+          <button class="btn btn-secondary btn-sm" id="btn-add-water" style="color: #06b6d4;">
+            + Drink 1 Glass (250ml)
+          </button>
+        </div>
+      </div>
+
+      <!-- 2-Column: Logged Foods vs Curated Indian Meal Plans -->
+      <div class="grid-2">
+        <!-- Logged Foods for Today -->
+        <div class="glass-card">
+          <div class="section-header" style="margin-bottom: 1rem;">
+            <div>
+              <h3 style="font-size: 1.15rem; color: #fff;">Today's Logged Foods</h3>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">Real-time tracking of meals and snacks</p>
+            </div>
+          </div>
+          <div id="logged-food-list">
+            <!-- Populated via app.js -->
+          </div>
+        </div>
+
+        <!-- Curated Meal Plan Catalog -->
+        <div class="glass-card">
+          <div class="section-header" style="margin-bottom: 1rem;">
+            <div>
+              <h3 style="font-size: 1.15rem; color: #fff;">Cuisine Meal Plans</h3>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">High-protein Indian vegetarian & athletic non-veg</p>
+            </div>
+            <div style="display: flex; gap: 0.4rem;">
+              <button class="btn btn-primary btn-sm" id="plan-select-veg">Indian Veg</button>
+              <button class="btn btn-secondary btn-sm" id="plan-select-nonveg">Non-Veg</button>
+            </div>
+          </div>
+          <div id="curated-meal-plan-container">
+            <!-- Populated via app.js -->
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ============================================== -->
+    <!-- 5. AI BIOMECHANICS COACH VIEW                  -->
+    <!-- ============================================== -->
+    <section id="view-coach" class="view-section">
+      <div class="section-header">
+        <div>
+          <h1 class="section-title">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="var(--accent-volt)" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Coach Pulse — AI Biomechanics & Form Specialist
+          </h1>
+          <p class="section-subtitle">Real-time answers for joint pain, form cues, safe exercise swaps, and high-protein Indian nutrition hacks.</p>
+        </div>
+      </div>
+
+      <!-- Chat UI Box -->
+      <div class="chat-window">
+        <div class="chat-header">
+          <div style="display: flex; align-items: center; gap: 0.85rem;">
+            <div class="coach-avatar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            </div>
+            <div>
+              <div style="font-weight: 800; font-size: 1rem; color: #fff;">Coach Pulse (Active)</div>
+              <div style="font-size: 0.75rem; color: var(--accent-volt);">Biomechanics & Sports Science Engine</div>
+            </div>
+          </div>
+          <span class="badge badge-overload">AI Orthopedic Safety</span>
+        </div>
+
+        <!-- Chat Messages Scrollable -->
+        <div class="chat-messages" id="coach-chat-messages">
+          <!-- Populated via app.js -->
+        </div>
+
+        <!-- Quick Prompt Pills -->
+        <div class="chat-suggestions">
+          <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); align-self: center; margin-right: 0.25rem;">Quick Prompts:</span>
+          <button class="prompt-pill" data-prompt="My knee hurts during squats">🩹 My knee hurts during squats</button>
+          <button class="prompt-pill" data-prompt="I only have 25 minutes today">⏱️ Only 25 minutes today</button>
+          <button class="prompt-pill" data-prompt="How can I hit 140g protein on Indian vegetarian diet?">🍛 140g Indian veg protein</button>
+          <button class="prompt-pill" data-prompt="My lower back feels tight on deadlifts">🏋️ Lower back deadlift relief</button>
+          <button class="prompt-pill" data-prompt="How does the progressive overload engine work?">📈 Explain Overload Engine</button>
+        </div>
+
+        <!-- Input Bar -->
+        <div class="chat-input-bar">
+          <input type="text" id="coach-user-input" class="chat-input" placeholder="Ask anything... e.g. 'My knee hurts on squats', 'I only have 20 mins', 'Check my bench form'...">
+          <button id="coach-send-btn" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Ask Coach
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================== -->
+  <!-- FLOATING LIVE REST TIMER                       -->
+  <!-- ============================================== -->
+  <div id="rest-timer-floater" class="rest-timer-bar" style="display: none;">
+    <div style="display: flex; align-items: center; gap: 0.5rem;">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--accent-volt)" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: #fff;">REST TIMER</span>
+    </div>
+    <div id="rest-timer-digits" class="timer-digits">01:30</div>
+    <div class="timer-controls">
+      <button class="timer-preset-btn" id="timer-add-15">+15s</button>
+      <button class="timer-preset-btn" onclick="workoutLogger.startRestTimer(60)">60s</button>
+      <button class="timer-preset-btn" onclick="workoutLogger.startRestTimer(90)">90s</button>
+      <button class="icon-btn" id="timer-close-btn" style="width: 26px; height: 26px;" title="Dismiss">
+        &times;
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: WORKOUT COMPLETION & OVERLOAD ADAPT     -->
+  <!-- ============================================== -->
+  <div id="workout-summary-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close-btn" onclick="app.closeSummaryModal()">&times;</button>
+      <div id="modal-summary-content">
+        <!-- Populated via app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: QUICK ADD FOOD ITEM                     -->
+  <!-- ============================================== -->
+  <div id="food-add-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close-btn" onclick="document.getElementById('food-add-modal').classList.remove('open')">&times;</button>
+      <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; color: #fff;">Quick Add Food</h3>
+      <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem;">Choose from verified Indian high-protein staples or enter a custom item.</p>
+
+      <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--accent-volt); margin-bottom: 0.5rem;">
+        Verified High-Protein Database Picks
+      </div>
+      <div id="catalog-food-picks" style="display: flex; flex-direction: column; gap: 0.5rem; max-height: 220px; overflow-y: auto; margin-bottom: 1.5rem;">
+        <!-- Populated via app.js -->
+      </div>
+
+      <div style="border-top: 1px solid var(--border-subtle); padding-top: 1.25rem;">
+        <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #fff; margin-bottom: 0.75rem;">
+          Or Enter Custom Meal
+        </div>
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
+          <input type="text" id="custom-food-name" class="chat-input" placeholder="Food Name (e.g. Sattu Drink)">
+          <input type="number" id="custom-food-cals" class="chat-input" placeholder="Calories (kcal)">
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem;">
+          <input type="number" id="custom-food-protein" class="chat-input" placeholder="Protein (g)">
+          <input type="number" id="custom-food-carbs" class="chat-input" placeholder="Carbs (g)">
+          <input type="number" id="custom-food-fat" class="chat-input" placeholder="Fat (g)">
+        </div>
+        <button class="btn btn-primary" style="width: 100%;" onclick="app.addCustomFood()">
+          + Add to Today's Food Tracker
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Application Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/overloadEngine.js"></script>
+  <script src="js/generator.js"></script>
+  <script src="js/logger.js"></script>
+  <script src="js/nutrition.js"></script>
+  <script src="js/coach.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
